@@ -324,6 +324,7 @@ public class FTPForm extends javax.swing.JFrame {
     private void btnConnectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConnectActionPerformed
         
         // Lay gia tri
+        dm.clear();
         String host= this.textHost.getText().trim();
         int port = Integer.parseInt(this.textPort.getText());
         String user = this.textUser.getText().trim();
@@ -446,8 +447,9 @@ public class FTPForm extends javax.swing.JFrame {
     }//GEN-LAST:event_textSelectActionPerformed
 
     private void jtextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtextMouseClicked
-        String textSelect = jtext.getSelectedValue().toString();
-        this.textSelect.setText(textSelect);
+        String select = jtext.getSelectedValue().toString();
+        
+        this.textSelect.setText(select);
     }//GEN-LAST:event_jtextMouseClicked
 
     /**
