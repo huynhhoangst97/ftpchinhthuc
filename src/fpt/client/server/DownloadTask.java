@@ -24,6 +24,8 @@ public class DownloadTask extends SwingWorker<Void, Void> {
 	private String downloadPath;
 	private String saveDir;
 
+	private FTPForm gui;
+	
 	public DownloadTask(String host, int port, String username,
 			String password, String downloadPath, String saveDir) {
 		this.host = host;
@@ -32,7 +34,6 @@ public class DownloadTask extends SwingWorker<Void, Void> {
 		this.password = password;
 		this.downloadPath = downloadPath;
 		this.saveDir = saveDir;
-	
 	}
 
 	/**
@@ -49,6 +50,7 @@ public class DownloadTask extends SwingWorker<Void, Void> {
 			long totalBytesRead = 0;
 			int percentCompleted = 0;
 			
+			long fileSize = util.getFileSize(downloadPath);
 			
 			String fileName = new File(downloadPath).getName();
 			
@@ -61,7 +63,7 @@ public class DownloadTask extends SwingWorker<Void, Void> {
 			while ((bytesRead = inputStream.read(buffer)) != -1) {
 				outputStream.write(buffer, 0, bytesRead);
 				totalBytesRead += bytesRead;
-				
+				percentCompleted = (int) (totalBytesRead * 100 / fileSize);
 				setProgress(percentCompleted);
 			}
 
